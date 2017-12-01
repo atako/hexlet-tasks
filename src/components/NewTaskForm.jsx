@@ -1,20 +1,13 @@
 import React from 'react'; // eslint-disable-line
 
 export default class NewTaskForm extends React.Component {
-  // BEGIN (write your solution here)
   addTask = (e) => {
-    e.preventDefault()
-    this.props.addTask({ text: this.props.newTaskText })
+    e.preventDefault();
+    this.props.addTask({ text: this.props.newTaskText });
   }
-
-  updateNewTaskText = (e) => {
-    e.preventDefault()
-    this.props.updateNewTaskText({ text: e.target.value })
-  }
-  // END
+  updateNewTaskText = e => this.props.updateNewTaskText({ text: e.target.value })
 
   render() {
-    console.log(this.props)
     const { newTaskText } = this.props;
 
     return <form action="" className="form-inline" onSubmit={this.addTask}>

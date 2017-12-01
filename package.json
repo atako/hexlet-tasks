@@ -9,7 +9,8 @@
     "react-redux": "*",
     "react-scripts": "1.0.17",
     "redux": "*",
-    "redux-actions": "^2.2.1"
+    "redux-actions": "^2.2.1",
+    "reselect": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

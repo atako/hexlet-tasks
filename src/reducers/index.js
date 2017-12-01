@@ -7,10 +7,20 @@ const tasks = handleActions({
   [actions.addTask](state, { payload: { task } }) {
     return { ...state, [task.id]: task };
   },
-  // BEGIN (write your solution here)
   [actions.removeTask](state, { payload: { id } }) {
-    const newItems = _.omit(state, id)
-    return newItems
+    return _.omit(state, id);
+  },
+  // BEGIN (write your solution here)
+  [actions.toogleTaskState](state, { payload: { id } }) {
+    const taskForChange = _.mapValues(state, function (o) {
+      if (o.id === id) {
+        const activeState = o.state === 'active' ? 'finished' : 'active'
+        return { text: o.text, state: activeState, id: o.id }
+      }
+      return o
+    })
+    console.log(taskForChange)
+    return taskForChange
   }
   // END
 }, {});

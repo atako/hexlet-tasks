@@ -1,16 +1,21 @@
 import { connect } from 'react-redux'; // eslint-disable-line
 import Component from '../components/TasksList.jsx';
 import * as actionCreators from '../actions';
+import { tasksSelector } from '../selectors';
 
 // BEGIN (write your solution here)
 const mapStateToProps = state => {
+  const tasksArray = tasksSelector(state)
   const props = {
-    tasks: state.tasks
+    tasks: tasksArray
   }
   return props
 }
 
-export default connect(
+const Container = connect(
   mapStateToProps,
   actionCreators
 )(Component)
+// END
+
+export default Container;

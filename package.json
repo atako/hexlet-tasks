@@ -10,6 +10,7 @@
     "react-scripts": "1.0.17",
     "redux": "*",
     "redux-actions": "^2.2.1",
+    "redux-form": "^7.2.0",
     "reselect": "^3.0.1"
   },
   "scripts": {

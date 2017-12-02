@@ -2,8 +2,10 @@ import { connect } from 'react-redux'; // eslint-disable-line
 import Component from '../components/NewTaskForm.jsx';
 import * as actionCreators from '../actions';
 
-const mapStateToProps = (state) => {
-  const props = { newTaskText: state.newTaskText };
+const mapStateToProps = ({ taskCreatingState }) => {
+  const props = {
+    taskCreatingState,
+  };
   return props;
 };
 

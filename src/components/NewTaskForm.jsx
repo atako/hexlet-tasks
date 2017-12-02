@@ -1,28 +1,31 @@
 import React from 'react'; // eslint-disable-line
 import { Field, reduxForm } from 'redux-form'; // eslint-disable-line
+import cn from 'classnames'; // eslint-disable-line
 
-// BEGIN (write your solution here)
 class NewTaskForm extends React.Component {
   addTask = (values) => {
-    this.props.addTask({ text: values.text })
-    this.props.reset()
+    this.props.addTask(values);
+    this.props.reset();
   }
+
   render() {
-    return <form onSubmit={this.props.handleSubmit(this.addTask)} action="" className="form-inline" >
+    console.log(this.props.taskCreatingState)
+    const submitClasses = cn({
+      'btn btn-primary btn-sm': true,
+      // BEGIN (write your solution here)
+      'disabled': this.props.taskCreatingState === 'requested'
+      // END
+    });
+
+    return <form action="" className="form-inline" onSubmit={this.props.handleSubmit(this.addTask)}>
       <div className="form-group mx-3">
-        <Field
-          name='text'
-          type="text"
-          required
-          component='input'
-        />
+        <Field name="text" required component="input" type="text" />
       </div>
-      <button type="submit" className="btn btn-primary btn-sm">Add</button>
-    </form>
+      <button type="submit" className={submitClasses}>Add</button>
+    </form>;
   }
 }
-export default reduxForm({
-  form: 'newTask'
-})(NewTaskForm)
-// END
 
+export default reduxForm({
+  form: 'newTask',
+})(NewTaskForm);

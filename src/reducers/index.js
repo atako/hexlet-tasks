@@ -10,19 +10,12 @@ const tasks = handleActions({
   [actions.removeTask](state, { payload: { id } }) {
     return _.omit(state, id);
   },
-  // BEGIN (write your solution here)
-  [actions.toogleTaskState](state, { payload: { id } }) {
-    const taskForChange = _.mapValues(state, function (o) {
-      if (o.id === id) {
-        const activeState = o.state === 'active' ? 'finished' : 'active'
-        return { text: o.text, state: activeState, id: o.id }
-      }
-      return o
-    })
-    console.log(taskForChange)
-    return taskForChange
-  }
-  // END
+  [actions.toggleTaskState](state, { payload: { id } }) {
+    const task = state[id];
+    const newState = task.state === 'active' ? 'finished' : 'active';
+    const updatedTask = { ...task, state: newState };
+    return { ...state, [task.id]: updatedTask };
+  },
 }, {});
 
 const newTaskText = handleActions({
